@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Form, AutoComplete, Input, type FormInstance } from "antd";
+import { Form, AutoComplete, Input, Spin, type FormInstance } from "antd";
 import type { OrderDraft } from "../order/orderDraft";
 import type { Contragent } from "../common/tmptypes";
 import axios from "axios";
@@ -12,7 +12,6 @@ interface ClientStepProps {
 }
 
 export const ClientStep: React.FC<ClientStepProps> = ({
-   draft,
    updateDraft,
    form,
 }) => {
@@ -99,8 +98,9 @@ export const ClientStep: React.FC<ClientStepProps> = ({
                }}
                value={inputName}
                placeholder="поиск по названию"
+               notFoundContent={loading ? "Поиск..." : "Ничего не найдено"}
             >
-               <Input />
+               <Input suffix={loading ? <Spin size="small" /> : null} />
             </AutoComplete>
          </Form.Item>
 
@@ -125,10 +125,17 @@ export const ClientStep: React.FC<ClientStepProps> = ({
                   if (found) handleSelect(found);
                }}
                placeholder="поиск по телефону"
+               notFoundContent={loading ? "Поиск..." : "Ничего не найдено"}
             >
-               <Input />
+               <Input suffix={loading ? <Spin size="small" /> : null} />
             </AutoComplete>
          </Form.Item>
+
+         {loading && (
+            <div style={{ textAlign: "center", marginTop: "16px" }}>
+               <Spin size="small" /> Поиск клиентов...
+            </div>
+         )}
       </>
    );
 };
