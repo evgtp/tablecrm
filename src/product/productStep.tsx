@@ -128,7 +128,6 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                            width: "100%",
                         }}
                      >
-                        {/* левая колонка: название */}
                         <div style={{ flex: 1, whiteSpace: "pre-wrap" }}>
                            <a
                               href="#"
@@ -141,7 +140,6 @@ export const ProductsStep: React.FC<ProductsStepProps> = ({
                            </a>
                         </div>
 
-                        {/* правая колонка: цена и контролы */}
                         <div
                            style={{
                               display: "flex",
